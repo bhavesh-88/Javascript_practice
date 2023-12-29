@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Create a solution to maintain a bank account's balance.
+
+    Implement the Account class that manages an account's balance. The class has the following constructor and methods:
+
+    1. The constructor Account(balance) where parameter balance denotes the initial balance of the account.
+
+    2. The method debit(amount) debits the amount from the account and returns true. If insufficient balance, do not
+    debit and return false.
+
+    3. The method getBalance() returns the current balance.
+
+    4. The method credit(amount) credits the amount to the account
+    NOTE: You may assume that the amount parameter passed is always positive or 0.
+
+    The locked stub code validates the correctness of the Account class implementation by performing the following
+    operations:
+
+    Debit amount. This operation debits the amount. If the return value is false, it prints 'Insufficient balance!
+    Otherwise it prints <amount> debited'.
+
+        Credit amount. This operation credits the amount and prints '<amount> credited'.
+
+            • GetBalance: This operation gets the current balance and prints 'Current balance is <balance>' -->
+
+    <script>
+
+        class Account {
+            constructor(balance) {
+                this.balance = balance;
+            }
+            debit(amount) {
+                if (amount > this.balance) {
+                    console.log('Insufficient balance!');
+                    return false
+                } else {
+                    this.balance = this.balance - amount;
+                    // this.balance -= amount;
+                    console.log(`${amount} debited`)
+                    return true
+                }
+            }
+            getBalance() {
+                console.log(`Current balance is ${this.balance}`);
+                return this.balance;
+            }
+            credit(amount) {
+                return this.balance += amount
+            }
+        }
+
+        const account = new Account(1000);
+
+
+        // Debit operation
+        account.debit(500); // Output: 500 debited
+        // account.debit(700); // Output: Insufficient balance!
+
+
+        // Credit operation
+        account.credit(200); // Output: 200 credited
+
+        // Get Balance operation
+        account.getBalance(); // Output: Current balance is 700
+    </script>
+</body>
+
+</html>

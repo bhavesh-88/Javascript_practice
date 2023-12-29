@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+Create an Image class that supports image cloning. Multiple tools make copy- pasting images possible by cloning them.
+
+Implementation of class Size is already provided.
+
+1. This class has a constructor Size(width, height) to set the width and height of the Size object created.
+
+Implement the Image class with the following constructor and methods:
+
+1. The constructor Image(String url, Size size) sets the url and size of the image object created.
+
+2. The method getUrl() returns the url.
+
+3. The method setUrl(url) updates the url.
+
+4. The method setSize(width, height) updates the width and height values of the size property.
+
+5. The method getSize() returns the size of the image as a Size object.
+
+6. The method clonelmage() returns a clone of the current image. Return a new Image instance with the same properties (urland size) as the current object.
+
+The locked stub code validates the correctness of the Image class implementation by performing the following operations on the images:
+
+• Clone Id: This operation creates a clone of the image.
+
+• UpdateUrl Id newUrl: This operation updates the url of the image.
+
+UpdateSize Id newWidth newHeight. This operation updates the size of the image.
+
+After performing all the operations, the locked stub code prints the url and size of each image.
+
+    <script>
+        class Size {
+            constructor(width, height) {
+                this.width = width;
+                this.height = height;
+            }
+        }
+
+        class Image {
+            constructor(url, size) {
+                this.url = url;
+                this.size = size;
+            }
+
+            getUrl() {
+                return this.url;
+            }
+
+            setUrl(url) {
+                this.url = url;
+            }
+
+            setSize(width, height) {
+                this.size.width = width;
+                this.size.height = height;
+            }
+
+            getSize() {
+                return this.size;
+            }
+
+            cloneImage() {
+                // Create a new Image instance with the same properties
+                return new Image(this.url, new Size(this.size.width, this.size.height));
+            }
+        }
+
+        // Example usage
+        const size = new Size(100, 150);
+        const originalImage = new Image("https://example.com/image.jpg", size);
+
+        // Clone the original image
+        const clonedImage = originalImage.cloneImage();
+
+        // Update the URL of the cloned image
+        clonedImage.setUrl("https://example.com/clone.jpg");
+
+        // Update the size of the original image
+        originalImage.setSize(200, 300);
+
+        // Print the details of the images
+        console.log("Original Image:");
+        console.log("URL: " + originalImage.getUrl());
+        console.log("Size: " + originalImage.getSize().width + " x " + originalImage.getSize().height);
+
+        console.log("\nCloned Image:");
+        console.log("URL: " + clonedImage.getUrl());
+        console.log("Size: " + clonedImage.getSize().width + " x " + clonedImage.getSize().height);
+    </script>
+</body>
+
+</html>

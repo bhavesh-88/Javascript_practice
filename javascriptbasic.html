@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    In this challenge, the task is to create a class NotesStore. The class will manage a collection of notes, with each
+    note having a state and a name. Valid states for notes are: 'completed', 'active', and 'others'. All other states
+    are invalid.
+    The class must have following methods:
+    1 addNote(state, name): adds a note with the given name and state to the collection. In
+    addition to that:
+    • If the passed name is empty, then it throws an Error with the message
+    'Name cannot be empty'
+    • If the passed name is non-empty but the given state is not a valid state for a note, then it throws an Error with
+    the message 'Invalid state (state)'
+    2 getNotes(state): returns an array of names of notes with the given state added so far. The names are returned in
+    the order the corresponding notes were added In addition to that
+    If the given state is not a valid note state then it throws an Error with the message invalid state (state)
+    If no note is found in this state it returns an empty array
+
+    <script>
+        class NotesStore {
+            constructor() {
+                this.notes = [];
+            }
+            addNote(state, name) {
+                const validSates = ['completed', 'active', 'others'];
+
+                if (name === undefined || name === null || name === '') {
+                    throw new Error('Name cannot be empty');
+                }
+
+                if (!validSates.includes(state)) {
+                    throw new Error(`Invalid state (${state})`);
+                }
+                this.notes.push({ state, name })
+            }
+            getNotes(state) {
+                const validSates = ['completed', 'active', 'others'];
+                if (!validSates.includes(state)) {
+                    throw new Error(`Invalid state (${state})`);
+                }
+                const stateNotes = this.notes
+                    .filter((note) => note.state === state)
+                    .map((note) => note.name);
+
+                return stateNotes;
+            }
+        }
+
+        // Example usage:
+        const notesStore = new NotesStore();
+
+        // Adding notes
+        notesStore.addNote('active', 'Note 1');
+        notesStore.addNote('completed', 'Note 2');
+        notesStore.addNote('others', 'Note 3');
+
+
+        // Retrieving notes
+        console.log(notesStore.getNotes('active'));      // Output: ['Note 1']
+        console.log(notesStore.getNotes('completed'));   // Output: ['Note 2']
+        console.log(notesStore.getNotes('others'));      // Output: ['Note 3']
+
+
+        // Trying to add a note with an invalid state
+        // try {
+        //     notesStore.addNote('invalid_state', 'Invalid Note');
+        // } catch (error) {
+        //     console.error(error.message);  // Output: Invalid state (invalid_state)
+        // }
+
+        // // Trying to add a note with an empty name
+        // try {
+        //     notesStore.addNote('active', '');
+        // } catch (error) {
+        //     console.error(error.message);  // Output: Name cannot be empty
+        // }
+    </script>
+
+    <!-- <script>
+        class NotesStore {
+            constructor() {
+                this.notes = {};
+                this.validStates = new Set(['completed', 'active', 'others']);
+            }
+
+            addNote(state, name) {
+                if (!name) {
+                    throw new Error('Name cannot be empty');
+                }
+                if (!this.validStates.has(state)) {
+                    throw new Error(`Invalid state ${state}`);
+                }
+                if (!this.notes[state]) {
+                    this.notes[state] = [];
+                }
+                this.notes[state].push(name);
+            }
+
+            getNotes(state) {
+                if (!this.validStates.has(state)) {
+                    throw new Error(`Invalid state ${state}`);
+                }
+                return this.notes[state] || [];
+            }
+        }
+    </script> -->
+</body>
+
+</html>

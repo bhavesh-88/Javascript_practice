@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        // 1.reverse a string each word
+        var str = "hello my name is bhavesh";
+
+        let c = str.split(" ").map((word) => {
+            return word.split("").reverse().join("");
+        })
+
+        console.log(c.join(" "));
+        // console.log(str.split(" "));
+
+
+
+        // 2.check is a object is array or not
+
+        function checkarray(ele) {
+            console.log(Array.isArray(ele));
+            // return Array.isArray(ele)
+        }
+
+        checkarray([])
+        checkarray({})
+
+
+
+
+        // 3.how to empty a array in javascript
+        // do not reset it to a new array and do not loop  through to pop each value
+
+        array = [12, 3, 4, 5, 6, 6]
+        array.lenght = 0
+        console.log(array);
+
+
+
+        // 4.how do check a number is integer
+        // var b = 12.8;
+        var b = 12;
+        // reminder %
+
+        if (b % 1 === 0) {
+            console.log("integer");
+        } else {
+            console.log("not a interger");
+        }
+
+
+
+        // 5.make this work
+        // duplicate a array
+
+        function duplicate(arr) {
+            return arr.concat(arr)
+        }
+        console.log(duplicate([1, 2, 3, 4, 5]));
+
+
+
+
+        // 6.reverse a number
+
+        let a = 12;
+        a.toString().split("").reverse().join("")
+        console.log(a);
+
+        function number(num) {
+            // return num.toString().split("").reverse().join("");
+            return Number(num.toString().split("").reverse().join(""))
+        }
+
+        console.log(number(12234));
+
+
+
+
+        // 7.check a string a palindrome or Not
+        // "loop".split("").reverse().join("")
+        function striingplindrome(str) {
+            var reversed = str.split("").reverse().join("");
+            if (reversed === str) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        console.log(striingplindrome("poop"));
+        console.log(striingplindrome("loop"));
+
+
+
+        // 8.return a passed string with letters alphabatical order
+
+        function alphabaticalstring(str) {
+            return str.split("").sort().join("")
+        }
+
+        console.log(alphabaticalstring("apple"));
+
+
+
+
+        // 9.return a string with each word first letter in uppercase
+
+        let word = "bhavesh"
+        let r = word.charAt(0).toUpperCase() + word.substring(1);
+        console.log(r);
+
+
+        function capitalizestring(str) {
+            var allwords = str.split(" ").map(function (word) {
+                return word.charAt(0).toUpperCase() + word.substring(1);
+            })
+            console.log(allwords.join(" "));
+        }
+
+        capitalizestring("hello my name bhavesh")
+
+
+
+
+
+        // 10. check accourances in word 
+        function occ(str) {
+            var occurences = {}
+            str.split("").forEach((element) => {
+                if (occurences.hasOwnProperty(element) === false) {
+                    occurences[element] = 1;
+                } else {
+                    occurences[element]++;
+                }
+            });
+
+            return occurences;
+        }
+        console.log(occ("bhavesh"));
+        console.log(occ("apple"));
+
+
+
+
+
+        // 11. sum of total number in array 
+        let aa = [34, 65, 7, 8, 3, 2, 6, 8]
+        let sum = 0;
+        aa.forEach(element => {
+            sum = element + sum;
+        });
+        console.log(sum);
+
+        let result = aa.reduce((a, b) => a + b);
+        console.log(result);
+
+
+
+
+        // 12. A array with numbers and string only add those numbers which are not string
+
+        let arrr = ['avr', 234, 'helo', 34, 66, 'qvudf', 56, 'name'];
+        let s = 0
+        arrr.forEach(function (ele) {
+            if (typeof ele === 'number') {
+                sum = sum + ele
+            }
+        });
+
+        console.log(s);
+
+
+
+
+
+        // 13. a array of object and remover all object which gender valuse male
+
+        var arrays = [
+            { name: "bhavesh", gender: "male" },
+            { name: "divya", gender: "female" },
+            { name: "akram", gender: "other" },
+            { name: "krina", gender: "female" },
+            { name: "vipul", gender: "male" },
+
+        ]
+
+        let newarrays = arrays.filter(function (ele) {
+            return ele.gender === "male"
+        })
+        arrays = newarrays;  // copy
+
+
+        // var count = 0;
+        // arrays.forEach(function (ele) {
+        //     if(ele.gender !== "male") count++;
+        // })
+
+        // for (var i = 0; i <= count; i++) {
+        //     for (var j = 0; j < arrays.length; j++) {
+        //         if (arrays[j].gender !== "male") {
+        //             arrays.splice(j, 1);
+        //         }
+        //     }
+        // }
+
+
+
+
+
+        // 14. clone a array
+
+        function clonearray(arr) {
+            return [...arr];
+        }
+
+        console.log(clonearray([1, 3, 4, 5]));
+
+
+        // function clonearray(arr) {
+        //     var newarray = []
+        //     arr.forEach(function (e) {
+        //         newarray.push(e);
+        //     })
+        //     return newarray;
+        // }
+
+        // console.log(clonearray([1,3,4,5]));
+
+
+        // function clonearray(arr) {
+        //     return arr.map(function (e) {
+        //         return e;
+        //     });
+        // }
+
+        // console.log(clonearray([1,3,4,5]));
+
+
+
+
+
+        // 15. write a javascript function which accepts argument and return the type 
+        // note ther are six possible value that type of return boject, boolean, function, number, string, and undefined
+
+
+        function type(ele) {
+            return typeof ele;
+        }
+
+        console.log(type([]));
+        console.log(type(12));
+        console.log(type("12"));
+        console.log(type(true));
+        console.log(type(undefined));
+        console.log(type(null));
+
+
+
+
+
+        // 16 function to get the first elemment of an array . passing a parameter of "n" will return the first "n" elememts of the array
+
+        function retrieve(arr, n = 1) {
+            console.log(arr);
+            if (n <= arr.lenght) {
+                for (let i = 0; i < n; i++) {
+                    console.log(arr[i]);;
+                }
+            }
+            else {
+                console.log(n + "to element hi nahi hai");
+            }
+        }
+
+        // retrieve([1,2,3,4,5])
+        retrieve([1, 2, 3, 4, 5], 5)
+        // koi value send nahi karte h to undefined
+
+
+        // 17 function to get the first elemment of an array . passing a parameter of "n" will return the last "n" elememts of the array
+        function retrieve(arr, n = 1) {
+            console.log(arr);
+            if (n <= arr.lenght) {
+                for (let i = 0; i < n; i++) {
+                    console.log(arr[arr.lenght - 1 - i]);;
+                }
+            }
+            else {
+                console.log(n + "to element hi nahi hai");
+            }
+        }
+
+        // retrieve([1,2,3,4,5])
+        retrieve([1, 2, 3, 4, 5], 5)
+        // koi value send nahi karte h to undefined
+
+
+
+
+
+
+        // 18.//JavaScript program to swap two variables
+
+        //take input from the users
+        let a = prompt('Enter the first variable: ');
+        let b = prompt('Enter the second variable: ');
+
+        //create a temporary variable
+        let temp;
+
+        //swap variables
+        temp = a;
+        a = b;
+        b = temp;
+
+        console.log(`The value of a after swapping: ${a}`);
+        console.log(`The value of b after swapping: ${b}`);
+
+
+        //take input from the users
+        // let a = prompt('Enter the first variable: ');
+        // let b = prompt('Enter the second variable: ');
+
+        // //using destructuring assignment
+        // [a, b] = [b, a];
+
+        // console.log(`The value of a after swapping: ${a}`);
+        // console.log(`The value of b after swapping: ${b}`);
+
+
+
+
+
+
+
+        // 19. union of two array
+
+        function unnion(arr1,arr2) {
+            return [...new set(arr1.concat(arr2))]
+        }
+        console.log(union([1,2,3,45,7,87],[2,4,56,1,5,7]));
+
+
+
+
+
+
+        // 20.javaScript Program to Check the Number of Occurrences of a Character in the String
+
+        function countstring(str, letter) {
+            let count = 0;
+
+            for (let i = 0; i < str.length; i++) {
+                if (str.charAt[i] == letter) {
+                    count += 1;
+                }
+                return count
+                
+            }
+        }
+
+        // take input from the user
+        const string = prompt('Enter a string: ');
+        const letterToCheck = prompt('Enter a letter to check: ');
+        console.log(countstring(string,letterToCheck));
+    </script>
+</body>
+
+</html>

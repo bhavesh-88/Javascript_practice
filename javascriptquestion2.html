@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 1. function that returns the reverse of a given String
+
+        // using for loop
+        // function reversestring(str) {
+        //     let reversed = '';
+
+        //     for (let i = str.length -1; i >=0; i--) {
+        //         reversed += str[i];
+
+        //     }
+        //     return reversed;
+        // }
+        // console.log(reversestring("hello world"));
+
+
+        function reverdd(str) {
+            return str.split("").reverse().join("");
+        }
+
+        console.log(reverdd("hello world"));
+
+
+
+        // 2. write a function that returns the longest word in the sentence;
+        function longword(str) {
+            const words = str.split(" ");
+            let longestwords = "";
+
+            for (let word of words) {
+                if (word.length > longestwords.length) {
+                    longestwords = word;
+                }
+            }
+            return longestwords;
+        }
+
+        console.log(longword("hello this a javascript"));
+
+
+
+
+        // 3.checks whether a given string is a palindrome or not
+        function ispalindrome(str) {
+            const reversstr = str.split("").reverse().join("");
+            return reversstr === str;
+        }
+
+        console.log(ispalindrome("poop"));
+        console.log(ispalindrome("pools"));
+
+
+
+
+        // 4. write a function to remove duplicte element from an array;
+        function removeDuplicate(arr) {
+            const uniqueElement = [];
+
+            for (let i = 0; i < arr.length; i++) {
+                if (uniqueElement.indexOf(arr[i]) === -1) {
+                    uniqueElement.push(arr[i]);
+                }
+            }
+            return uniqueElement;
+        }
+        console.log(removeDuplicate([1, 3, 4, 1, 3, 4, 51, 3]));
+
+
+
+
+        // 5.function that checks whether two string are anagrams or not 
+        function araAnagrams(str1, str2) {
+
+            let sortstr1 = str1.split("").sort().join("");
+            let sortstr2 = str2.split("").sort().join("");
+            return sortstr1 === sortstr2;
+        }
+
+        console.log(araAnagrams("listen", "silent"));
+
+
+
+        // 6.function that return the number of vowels in a string
+
+        function countvowels(str) {
+            const vowels = ["a", "e", "i", "o", "u"]
+            let count = 0;
+            for (let char of str.toLowerCase()) {
+                if (vowels.includes(char)) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        console.log(countvowels("Hello World"));
+
+
+
+
+        // 7 write a function to find the largest number in an array
+        function largestnumber(arrr) {
+            let largest = arrr[0];
+
+            for (let i = 1; i < arrr.length; i++) {
+                if (arrr[i] > largest ) {
+                    largest = arrr[i]
+                }
+            }
+            return largest;
+        }
+
+        console.log(largestnumber([3,4,5,73,4,67]));
+
+
+
+
+        // 8 function to check if a given number is prime or not
+        function isPrime(number) {
+            for (let i = 2; i <= number/2; i++) {
+                if (number % i === 0) {
+                    return false  // number is divisible by 1 this is not a prime
+                }
+            }
+            return true;
+        }
+        console.log(isPrime(5));
+
+
+
+
+        // 9 factorial number
+        function fact(num) {
+            if (num === 0) {
+                return 1;
+            }
+            let factorial = 1;
+            for (let i = 1; i <= num; i++) {
+                factorial *= i
+                
+            }
+            return factorial
+        }
+
+        console.log(fact(5));
+
+
+
+        // 10. remove all whitespaces characters from a string
+
+        function removewhitespace(str) {
+            const result = str.replace(/\s/g,"")
+            return result;
+        }
+
+        let b = "   cdfdf   dvndfd f "
+        console.log(removewhitespace(b));
+    </script>
+</body>
+
+</html>

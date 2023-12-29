@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Implement a function getNum Transactions(). It takes a username and it returns either the number of transactions
+    associated with username, or a string "Username Not Found" if no such user exists. Make a GET request to the given
+    REST APIs that contain information about a user.
+
+    Given a user name, the user details should be fetched by making a GET call to the API
+    https://jsonmock.hackerrank.com/api/article users?username=<username> where <username> is the parameter passed to
+            the getNumTransactions function.
+
+            The response will be a JSON object with the following 5 fields:
+
+            page: The current page of the results. (Number)
+
+            per_page: The maximum number of results returned per page. (Number)
+
+            total. The total number of results. (Number)
+
+            total_pages. The total number of pages with results. (Number)
+
+            data. Either an empty array or an array with a single object containing the user details record with the
+            following schema:
+
+            • id-user id (Number)
+
+            • username - user name as passed above (String)
+
+            • This object has other fields as well but they are not needed for this question.
+
+            If the username passed to the request does not exist in the system, the data array will be empty. In that
+            case, the function should return "Username Not Found".
+
+            An example of a user record is as follows:
+            {
+            "id":1,
+            "username": "epaga"
+            }
+
+
+            If the user details is successfully fetched from the first API, use the id property of the details object to
+            fetch the transactions information for the user. The API to fetch this is
+            https://jsonmock.hackerrank.com/api/tran sactions?&userId=<userld> where <userld> is the id property fetched
+                    earlier.
+
+                    The response will be a JSON object with the following 5 fields:
+
+                    page: The current page of the results. (Number)
+
+                    per_page: The maximum number of results returned per page. (Number)
+
+                    total. The total number of transactions for the given user id. (Number)
+
+                    total_pages. The total number of pages with results. (Number)
+
+                    data: Either an empty array or an array with transaction records of the user.
+
+                    Here total is the total number of transactions of the user and is the final value to be returned by
+                    the function.
+
+                    Here is an example of a response:
+
+                    {
+
+                    page: 1,
+
+                    per_page: 10,
+
+                    total: 75,
+
+                    total_pages: 8,
+
+                    data: [
+
+                    // Data contains the list of user transactions matching the user ID.
+
+                    {
+
+                    "id": 8,
+
+                    "userId": 1,
+
+                    "userName": "Francesco De Mello",
+
+                    "timestamp": 1548805761859,
+
+                    "txnType": "credit",
+
+                    "amount": "$1,214.44",
+
+                    }
+
+                    ]
+
+                    }
+
+                    As per this example final value to be returned is 75. -->
+
+    <script>
+
+        const getNumTransactions = async (username) =>{
+                // API endpoint: https://jsonmock.hackerrank.com/api/article_users?username=<username>
+                // API endpoint: https://jsonmock.hackerrank.com/api/transactions?&userId=<userId>
+
+                try {
+                    // Step 1: Make a GET request to the users API
+                    const userURL = `https:jsonmock.hackerrank.com/api/article_users?username=${username}`
+                    const usersResponse = await fetch(userURL);
+                    const userData = await usersResponse.json();
+                    console.log(userData);
+
+                    // Check if the username is not found
+                    if (usersResponse.status !== 200 || userData.data.length === 0) {
+                        return "Username Not Found";
+                    }
+
+                    const userId = userData.data[0].id;
+                    console.log(userId);
+                    
+                    // Step 2: Make a GET request to the transactions API using the user id
+                    const transactionsUrl = `https://jsonmock.hackerrank.com/api/transactions?userId=${userId}`;
+                    const transactionsResponse = await fetch(transactionsUrl);
+                    const transactionsData = await transactionsResponse.json();
+                    console.log(transactionsData);
+
+                    if (transactionsResponse.status !== 200 || transactionsData.data.length === 0) {
+                        return 0;
+                    }
+
+                    // Return the total number of transactions
+                    return transactionsData.total;
+
+                } catch (error) {
+                    console.error("Error:", error.message);
+                    // return "Error occurred while fetching data";
+                }
+
+        }
+
+        const username = "epaga";
+        getNumTransactions(username)
+        .then(result => console.log(result))
+        .catch(error => console.error(error));
+
+        // async function main(){
+        //     const username = "epaga";
+        //     const num = await getNumTransactions(username);
+        //     // return num;
+        //     console.log(num);
+        // }
+        // main();
+
+    </script>                
+
+</body>
+
+</html>
